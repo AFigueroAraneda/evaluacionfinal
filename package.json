@@ -29,6 +29,7 @@
     "@capacitor/haptics": "latest",
     "@capacitor/keyboard": "latest",
     "@capacitor/status-bar": "latest",
+    "@capacitor/camera": "latest",
     "@ionic/angular": "^8.0.0",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nuevo Aviso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+    <ion-input formControlName="titulo" placeholder="Título"></ion-input>
+    <div *ngIf="form.get('titulo')?.invalid && form.get('titulo')?.touched">El título debe tener al menos 5 caracteres</div>
+
+    <ion-textarea formControlName="descripcion" placeholder="Descripción"></ion-textarea>
+    <div *ngIf="form.get('descripcion')?.invalid && form.get('descripcion')?.touched">La descripción debe tener mínimo 20 caracteres</div>
+
+    <ion-button type="button" (click)="tomarFoto()">Tomar Foto</ion-button>
+    <ion-img *ngIf="form.value.foto" [src]="form.value.foto"></ion-img>
+
+    <ion-button type="submit" expand="full" [disabled]="form.invalid">Guardar</ion-button>
+  </form>
+</ion-content>
