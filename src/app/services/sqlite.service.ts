@@ -9,12 +9,8 @@ export class SqliteService {
   private sqlite = CapacitorSQLite;
   private sqliteConnection = new SQLiteConnection(this.sqlite);
   private db?: SQLiteDBConnection;
-
-  constructor() {
-    if (Capacitor.getPlatform() === 'web') {
-      this.iniciarPluginWeb();
-    }
-  }
+  private initialized = false;
+  constructor() {}
 
   private async iniciarPluginWeb(): Promise<void> {
     await customElements.whenDefined('jeep-sqlite');
@@ -24,8 +20,18 @@ export class SqliteService {
     }
   }
 
+  private async ensureInit(): Promise<void> {
+    if (!this.initialized && Capacitor.getPlatform() === 'web') {
+      await this.iniciarPluginWeb();
+      this.initialized = true;
+    } else {
+      this.initialized = true;
+    }
+  }
+
   private async openDB(): Promise<void> {
     if (!this.db) {
+      await this.ensureInit();
       this.db = await this.sqliteConnection.createConnection('avisos', false, 'no-encryption', 1, false);
       await this.db.open();
       await this.db.execute(`CREATE TABLE IF NOT EXISTS avisos(
