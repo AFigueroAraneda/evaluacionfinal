@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonFab, IonFabButton, IonIcon, IonModal, IonButton } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
@@ -30,8 +30,8 @@ export class AvisosListComponent implements OnInit {
   avisoAEliminar: Aviso | null = null;
   isDeleteModalOpen = false;
   modalEvent = '';
-
-  constructor(private avisosService: AvisosService, private router: Router) {}
+  private avisosService = inject(AvisosService);
+  private router = inject(Router);
 
   async ngOnInit() {
     await this.cargar();

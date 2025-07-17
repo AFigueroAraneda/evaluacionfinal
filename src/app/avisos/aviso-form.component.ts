@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonTextarea, IonButton, IonImg } from '@ionic/angular/standalone';
@@ -14,13 +14,15 @@ import { AvisosService } from '../services/avisos.service';
   imports: [CommonModule, FormsModule, ReactiveFormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonTextarea, IonButton, IonImg]
 })
 export class AvisoFormComponent {
+  private fb = inject(FormBuilder);
+  private avisosService = inject(AvisosService);
+  private router = inject(Router);
   form = this.fb.group({
     titulo: ['', [Validators.required, Validators.minLength(5)]],
     descripcion: ['', [Validators.required, Validators.minLength(20)]],
     foto: ['']
   });
 
-  constructor(private fb: FormBuilder, private avisosService: AvisosService, private router: Router) {}
 
   async tomarFoto() {
     try {

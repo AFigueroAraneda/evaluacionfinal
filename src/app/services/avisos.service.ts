@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { SqliteService } from './sqlite.service';
 
 export interface Aviso {
@@ -13,7 +13,7 @@ export interface Aviso {
   providedIn: 'root'
 })
 export class AvisosService {
-  constructor(private db: SqliteService) {}
+  private db = inject(SqliteService);
 
   obtenerAvisos(): Promise<Aviso[]> {
     return this.db.getAvisos();
