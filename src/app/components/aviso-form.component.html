@@ -1,0 +1,19 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <ion-input formControlName="titulo" label="Título" label-placement="stacked"></ion-input>
+  <div *ngIf="form.controls.titulo.touched && form.controls.titulo.invalid">
+    <small *ngIf="form.controls.titulo.errors?.required">El título es obligatorio.</small>
+    <small *ngIf="form.controls.titulo.errors?.minlength">Mínimo 5 caracteres.</small>
+  </div>
+
+  <ion-textarea formControlName="descripcion" label="Descripción" label-placement="stacked"></ion-textarea>
+  <div *ngIf="form.controls.descripcion.touched && form.controls.descripcion.invalid">
+    <small *ngIf="form.controls.descripcion.errors?.required">La descripción es obligatoria.</small>
+    <small *ngIf="form.controls.descripcion.errors?.minlength">Mínimo 20 caracteres.</small>
+  </div>
+
+  <div class="photo-preview" *ngIf="form.value.imagen">
+    <ion-img [src]="form.value.imagen"></ion-img>
+  </div>
+  <ion-button type="button" expand="full" (click)="tomarFoto()">Tomar Foto</ion-button>
+  <ion-button type="submit" expand="full">Guardar</ion-button>
+</form>
