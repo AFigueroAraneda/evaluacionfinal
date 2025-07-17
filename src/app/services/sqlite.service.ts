@@ -26,7 +26,7 @@ export class SqliteService {
 
   private async openDB(): Promise<void> {
     if (!this.db) {
-      this.db = await this.sqliteConnection.createConnection('avisos', false, 'no-encryption', 1);
+      this.db = await this.sqliteConnection.createConnection('avisos', false, 'no-encryption', 1, false);
       await this.db.open();
       await this.db.execute(`CREATE TABLE IF NOT EXISTS avisos(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
