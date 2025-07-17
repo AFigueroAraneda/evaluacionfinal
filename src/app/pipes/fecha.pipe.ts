@@ -12,9 +12,9 @@ import { DatePipe } from '@angular/common';
 export class FechaPipe implements PipeTransform {
   /**
    * Instancia de DatePipe empleada para dar formato a las fechas.
-   * Se inicializa con la configuración regional española por defecto.
+   * Se inyecta para utilizar la configuración regional definida en la aplicación.
    */
-  private readonly datePipe = new DatePipe('es-ES');
+  constructor(private datePipe: DatePipe) {}
 
   /**
    * Recibe una fecha o una cadena y la devuelve con el formato dd/MM/yyyy.
