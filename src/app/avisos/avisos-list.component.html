@@ -15,7 +15,13 @@
   </ion-fab>
 </ion-content>
 
-<ion-modal [isOpen]="isDeleteModalOpen" (ionModalDidDismiss)="cerrarModal()">
+<ion-modal
+  [isOpen]="isDeleteModalOpen"
+  (ionModalWillPresent)="onWillPresent()"
+  (ionModalDidPresent)="onDidPresent()"
+  (ionModalWillDismiss)="onWillDismiss()"
+  (ionModalDidDismiss)="cerrarModal()"
+>
   <ng-template>
     <ion-header>
       <ion-toolbar>

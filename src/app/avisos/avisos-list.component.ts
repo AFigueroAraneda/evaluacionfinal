@@ -29,6 +29,7 @@ export class AvisosListComponent implements OnInit {
   avisos: Aviso[] = [];
   avisoAEliminar: Aviso | null = null;
   isDeleteModalOpen = false;
+  modalEvent = '';
 
   constructor(private avisosService: AvisosService, private router: Router) {}
 
@@ -60,6 +61,18 @@ export class AvisosListComponent implements OnInit {
   cerrarModal() {
     this.isDeleteModalOpen = false;
     this.avisoAEliminar = null;
+  }
+
+  onWillPresent() {
+    this.modalEvent = 'willPresent';
+  }
+
+  onDidPresent() {
+    this.modalEvent = 'didPresent';
+  }
+
+  onWillDismiss() {
+    this.modalEvent = 'willDismiss';
   }
 
   nuevo() {
