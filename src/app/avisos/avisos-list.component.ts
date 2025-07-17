@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonFab, IonFabButton, IonIcon } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonFab, IonFabButton, IonIcon, IonModal, IonButton } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { AvisosService, Aviso } from '../services/avisos.service';
 import { AvisoItemComponent } from './aviso-item.component';
@@ -10,10 +10,25 @@ import { AvisoItemComponent } from './aviso-item.component';
   templateUrl: './avisos-list.component.html',
   styleUrls: ['./avisos-list.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonFab, IonFabButton, IonIcon, AvisoItemComponent]
+  imports: [
+    CommonModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonList,
+    IonFab,
+    IonFabButton,
+    IonIcon,
+    IonModal,
+    IonButton,
+    AvisoItemComponent,
+  ]
 })
 export class AvisosListComponent implements OnInit {
   avisos: Aviso[] = [];
+  avisoAEliminar: Aviso | null = null;
+  isDeleteModalOpen = false;
 
   constructor(private avisosService: AvisosService, private router: Router) {}
 
@@ -29,11 +44,22 @@ export class AvisosListComponent implements OnInit {
     this.avisos = await this.avisosService.obtenerAvisos();
   }
 
-  async borrarAviso(aviso: Aviso) {
-    if (aviso.id && confirm('¿Eliminar aviso?')) {
-      await this.avisosService.eliminarAviso(aviso.id);
+  borrarAviso(aviso: Aviso) {
+    this.avisoAEliminar = aviso;
+    this.isDeleteModalOpen = true;
+  }
+
+  async confirmarBorrado() {
+    if (this.avisoAEliminar?.id) {
+      await this.avisosService.eliminarAviso(this.avisoAEliminar.id);
       await this.cargar();
     }
+    this.cerrarModal();
+  }
+
+  cerrarModal() {
+    this.isDeleteModalOpen = false;
+    this.avisoAEliminar = null;
   }
 
   nuevo() {
