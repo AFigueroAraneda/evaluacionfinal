@@ -37,6 +37,7 @@ export class AvisosListComponent implements OnInit {
   }
 
   nuevo() {
+    (document.activeElement as HTMLElement | null)?.blur();
     this.router.navigate(['/avisos/nuevo']);
   }
 }
