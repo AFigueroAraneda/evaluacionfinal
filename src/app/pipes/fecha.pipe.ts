@@ -1,12 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Pipe({
   name: 'fecha',
-  standalone: true
+  standalone: true,
+  providers: [DatePipe]
 })
 export class FechaPipe implements PipeTransform {
-  transform(value: string | Date): string {
-    const date = new Date(value);
-    return date.toLocaleDateString();
+  constructor(private datePipe: DatePipe) {}
+  transform(value: string | Date): string | null {
+    return this.datePipe.transform(value, 'shortDate');
   }
 }
