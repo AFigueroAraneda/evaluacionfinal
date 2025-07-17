@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nuevo Aviso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-input label="Título" formControlName="titulo"></ion-input>
+    <div *ngIf="form.get('titulo')?.touched && form.get('titulo')?.invalid">
+      <small *ngIf="form.get('titulo')?.errors?.['required']">El título es obligatorio</small>
+      <small *ngIf="form.get('titulo')?.errors?.['minlength']">Mínimo 5 caracteres</small>
+    </div>
+
+    <ion-textarea label="Descripción" formControlName="descripcion"></ion-textarea>
+    <div *ngIf="form.get('descripcion')?.touched && form.get('descripcion')?.invalid">
+      <small *ngIf="form.get('descripcion')?.errors?.['required']">La descripción es obligatoria</small>
+      <small *ngIf="form.get('descripcion')?.errors?.['minlength']">Mínimo 20 caracteres</small>
+    </div>
+
+    <ion-button expand="full" (click)="tomarFoto()">Tomar Foto</ion-button>
+    <ion-img *ngIf="foto" [src]="foto"></ion-img>
+
+    <ion-button expand="full" (click)="guardar()">Guardar</ion-button>
+  </form>
+</ion-content>

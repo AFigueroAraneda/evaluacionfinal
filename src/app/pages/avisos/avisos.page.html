@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Avisos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <app-aviso-item *ngFor="let a of avisos" [aviso]="a" (borrar)="confirmarBorrar(a)"></app-aviso-item>
+  </ion-list>
+  <ion-button expand="full" (click)="nuevoAviso()">Nuevo Aviso</ion-button>
+
+  <ion-modal trigger="" >
+    <div class="wrapper">
+      <h3>¿Eliminar aviso?</h3>
+      <ion-button color="danger" (click)="borrarAviso()">Sí</ion-button>
+      <ion-button (click)="avisoAEliminar = undefined; (document.querySelector('ion-modal') as HTMLIonModalElement).dismiss();">No</ion-button>
+    </div>
+  </ion-modal>
+</ion-content>
