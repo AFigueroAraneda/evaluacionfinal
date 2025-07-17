@@ -23,8 +23,12 @@ export class AvisoFormComponent {
   constructor(private fb: FormBuilder, private avisosService: AvisosService, private router: Router) {}
 
   async tomarFoto() {
-    const image = await Camera.getPhoto({ resultType: CameraResultType.DataUrl });
-    this.form.patchValue({ foto: image.dataUrl });
+    try {
+      const image = await Camera.getPhoto({ resultType: CameraResultType.DataUrl });
+      this.form.patchValue({ foto: image.dataUrl });
+    } catch (err) {
+      console.error('Camera error', err);
+    }
   }
 
   async guardar() {
