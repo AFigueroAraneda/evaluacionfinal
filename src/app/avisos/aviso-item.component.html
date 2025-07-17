@@ -1,5 +1,10 @@
 <ion-item>
-  <ion-img *ngIf="aviso.foto" [src]="aviso.foto" slot="start"></ion-img>
+  <ion-img
+    *ngIf="aviso.foto"
+    [src]="aviso.foto"
+    slot="start"
+    class="foto-mini"
+  ></ion-img>
   <ion-label>
     <h2>{{ aviso.titulo }}</h2>
     <p>{{ aviso.fecha | fecha }}</p>
