@@ -13,7 +13,11 @@
     <div *ngIf="form.get('descripcion')?.invalid && form.get('descripcion')?.touched">La descripción debe tener mínimo 20 caracteres</div>
 
     <ion-button type="button" (click)="tomarFoto()">Tomar Foto</ion-button>
-    <ion-img *ngIf="form.value.foto" [src]="form.value.foto"></ion-img>
+    <ion-img
+      *ngIf="form.value.foto"
+      [src]="form.value.foto"
+      class="foto-preview"
+    ></ion-img>
 
     <ion-button type="submit" expand="full" [disabled]="form.invalid">Guardar</ion-button>
   </form>
