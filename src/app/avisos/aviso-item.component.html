@@ -1,0 +1,9 @@
+<ion-item>
+  <ion-img *ngIf="aviso.foto" [src]="aviso.foto" slot="start"></ion-img>
+  <ion-label>
+    <h2>{{ aviso.titulo }}</h2>
+    <p>{{ aviso.fecha | fecha }}</p>
+    <p>{{ aviso.descripcion }}</p>
+  </ion-label>
+  <ion-button fill="clear" color="danger" (click)="eliminar.emit()">Eliminar</ion-button>
+</ion-item>
