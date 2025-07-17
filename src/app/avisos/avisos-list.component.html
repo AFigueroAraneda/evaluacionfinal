@@ -5,8 +5,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-button expand="full" (click)="nuevo()">Nuevo Aviso</ion-button>
   <ion-list>
     <app-aviso-item *ngFor="let aviso of avisos" [aviso]="aviso" (eliminar)="borrarAviso(aviso)"></app-aviso-item>
   </ion-list>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="start">
+    <ion-fab-button (click)="nuevo()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
