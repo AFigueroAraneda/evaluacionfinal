@@ -1,7 +1,7 @@
 {
   "name": "evaluacionfinal",
   "version": "0.0.0",
-  "author": "Ionic Framework",
+  "author": "Alonso Figueroa",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
@@ -31,7 +31,8 @@
     "@capacitor/haptics": "latest",
     "@capacitor/keyboard": "latest",
     "@capacitor/status-bar": "latest",
-    "@ionic/angular": "^8.0.0",
+    "@ionic/angular": "^8.6.5",
+    "@ionic/core": "^8.6.5",
     "@ionic/pwa-elements": "^3.3.0",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
@@ -48,6 +49,7 @@
     "@angular/cli": "^20.0.0",
     "@angular/compiler-cli": "^20.0.0",
     "@angular/language-service": "^20.0.0",
+    "@angular/localize": "^20.1.1",
     "@capacitor/cli": "latest",
     "@ionic/angular-toolkit": "^12.0.0",
     "@types/jasmine": "~5.1.0",
@@ -64,6 +66,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.8.0"
+    "typescript": "~5.8.0",
+    "vite-plugin-dynamic-import": "^1.6.0"
   }
 }
